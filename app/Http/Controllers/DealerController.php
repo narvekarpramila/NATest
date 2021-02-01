@@ -12,26 +12,6 @@ use App\Marketplace_Inventory;
 class DealerController extends Controller
 {
     
-   public function dealerLogin(){
-       return view('dealer.dealerLogin');
-   }
-
-   public function signIn(Request $request){
- $input = $request->all();
-        $email = $input['email'];
-        $password = trim($input['password']);
-
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {       
-          
-                setcookie('email', $email, time() + (2592000), "/");
-                setcookie('password', base64_encode($password), time() + (2592000), "/");
-             
-                return redirect('dealer/dashboard'); 
-                   
-        } else {
-            return redirect()->back()->with('error', 'Email or password you entered is incorrect.');
-        }
-   }
 
   
    public function dashboard(Request $request){
@@ -41,13 +21,10 @@ class DealerController extends Controller
     }else{
   $oem_specs = OEM_Specs::where('model_name', 'LIKE','%'.$search.'%')->get();
     }
-      return view('dealer.dealerDashboard')->with('oem_specs',$oem_specs);
+      $response["oem_specs"] = $oem_specs;
+       $response["success"] = 1;
+    return response()->json($response);
    }
-
-	public function addDealer(){
-       return view('dealer.addDealer');
-   }
-
 
  public function saveDealer(Request $request){
     $dealer = Dealer::where('id', $request->id)->first();
@@ -58,40 +35,55 @@ class DealerController extends Controller
     $dealer->address=$request->address;
     $dealer->phone_no=$request->phone_no;
     $dealer->save();
-    return redirect('api/dealer/view-dealer');
+    $response["dealer"] = $dealer;
+       $response["success"] = 1;
+    return response()->json($response);
 }
 
 public function editDealer($id){
    $id = base64_decode($id);
     $dealer= Dealer::find($id);
-   return view('dealer.addDealer')->with('dealer',$dealer);
+    $response["dealer"] = $dealer;
+       $response["success"] = 1;
+    return response()->json($response);
 }
 
 
 
 public function viewDealer(){
  $dealer=Dealer::all();
- return view('dealer.ViewDealer')->with('dealer',$dealer);
+ $response["dealer"] = $dealer;
+       $response["success"] = 1;
+    return response()->json($response);
 }
+
+public function deleteDealer($id){
+   $id = base64_decode($id);
+    $dealer= Dealer::find($id);
+    $dealer->delete();
+    $response["dealer"] = $dealer;
+       $response["success"] = 1;
+    return response()->json($response);
+} 
 
 
 public function getModelDetails(){
   $models= OEM_Specs::select('model_name')->get();
-  return view('dealer.viewModel')->with('models',$models);
+   $response["models"] = $models;
+       $response["success"] = 1;
+    return response()->json($response);
 }
 
 public function getSearch(Request $request){
   $search = $request->search;
 
   $details = OEM_Specs::where('model_name', 'LIKE','%'.$search.'%')->get();
-  return $details;
+   $response["details"] = $details;
+       $response["success"] = 1;
+    return response()->json($response);
 }
 
 
-
-	public function addinventory(){
-       return view('dealer.addInventory');
-   }
 
 
  public function saveinventory(Request $request){
@@ -106,16 +98,29 @@ public function getSearch(Request $request){
     $inventory->no_of_prev_buyers=$request->no_of_prev_buyers;
     $inventory->registration_place=$request->registration_place;
     $inventory->save();
-    return redirect('api/dealer/view-inventory');
+    $response["inventory"] = $inventory;
+       $response["success"] = 1;
+    return response()->json($response);
 }
 
 public function editinventory($id){
    $id = base64_decode($id);
     $inventory= Marketplace_Inventory::find($id);
-   return view('dealer.addInventory')->with('inventory',$inventory);
+    $response["inventory"] = $inventory;
+       $response["success"] = 1;
+    return response()->json($response);
 }
 
 
+
+public function deleteinventory($id){
+   $id = base64_decode($id);
+    $inventory= Marketplace_Inventory::find($id);
+    $inventory->delete();
+    $response["inventory"] = $inventory;
+       $response["success"] = 1;
+    return response()->json($response);
+} 
 
 public function viewinventory(){
  $inventory=Marketplace_Inventory::all();
