@@ -28,7 +28,7 @@ class HomeController extends Controller
         }
 
         if (Auth::user() != null) {
-          return redirect('admin/dashboard');
+          return redirect('api/admin-dashboard');
         }
 
         return view('login', ['email' => $email_address, 'password' => $password]);
