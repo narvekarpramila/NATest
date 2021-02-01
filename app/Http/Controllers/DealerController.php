@@ -19,7 +19,7 @@ class DealerController extends Controller
      if ($search==NULL) {
       $oem_specs =OEM_Specs::all();
     }else{
-  $oem_specs = OEM_Specs::where('model_name', 'LIKE','%'.$search.'%')->get();
+ $oem_specs = OEM_Specs::where('model_name', 'LIKE','%'.$search.'%')->orWhere('year_of_model', 'LIKE','%'.$search.'%')->orWhere('price', 'LIKE','%'.$search.'%')->orWhere('color', 'LIKE','%'.$search.'%')->orWhere('mileage', 'LIKE','%'.$search.'%')->get();
     }
       $response["oem_specs"] = $oem_specs;
        $response["success"] = 1;
