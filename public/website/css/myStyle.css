@@ -1,0 +1,206 @@
+ .register{
+  background: -webkit-linear-gradient(left, #f18121, #5a3f23);
+  margin-top: 3%;
+  padding: 3%;
+}
+.register-left{
+  text-align: center;
+  color: #fff;
+  margin-top: 4%;
+}
+.register-left input{
+  border: none;
+  border-radius: 1.5rem;
+  padding: 2%;
+  width: 60%;
+  background: #f8f9fa;
+  font-weight: bold;
+  color: #383d41;
+  margin-top: 30%;
+  margin-bottom: 3%;
+  cursor: pointer;
+}
+.register-right{
+  background: #f8f9fa;
+  border-top-left-radius: 10% 50%;
+  border-bottom-left-radius: 10% 50%;
+}
+
+.register-left p{
+  font-weight: lighter;
+  padding: 12%;
+  margin-top: -9%;
+}
+.register .register-form{
+  padding: 10%;
+}
+.btnRegister{
+  float: right;
+  margin-top: 10%;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 2%;
+  background: #0062cc;
+  color: #fff;
+  font-weight: 600;
+  width: 50%;
+  cursor: pointer;
+}
+
+.modal-title{
+  font-size: 25px;
+  font-weight: 900;
+  margin-bottom: -15%;
+  color: #495057;
+}
+
+h1 {
+  font-size: 32px;
+  margin-top: 0;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+  padding: 4px;
+}
+
+p,
+span,
+
+span {
+  font-style: italic;
+  display: block;
+}
+
+img {
+  max-width: 100%;
+}
+/* Floating Social Media Bar Style Starts Here */
+
+.fl-fl {
+  background: #4337a9;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 4px;
+  width: 190px;
+  position: fixed;
+  right: -135px;
+  z-index: 1000;
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+}
+
+.fa {
+  font-size: 20px;
+  color: #fff;
+  padding: 13px 9px;
+  width: 40px;
+  margin-left: 8px;
+}
+
+.fl-fl:hover {
+  right: 0;
+}
+
+.fl-fl a {
+  color: #fff !important;
+  text-decoration: none;
+  text-align: center;
+  line-height: 43px!important;
+  vertical-align: top!important;
+}
+
+.float-fb {
+  top: 500px;
+}
+
+.float-tw {
+  top: 333px;
+}
+
+.float-gp {
+  top: 390px;
+}
+
+.float-rs {
+  top: 445px;
+}
+
+.fa-bars{
+  color: #000 !important;
+}
+
+
+page-holder {
+  min-height: 100vh;
+}
+.bg-cover {
+  background-image: url(../../images/b12.jpeg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: inline;
+  float: left;
+  height: 100vh;
+  margin-top: 0px;
+  padding: 118px 0;
+  text-align: center;
+  width: 100%;
+  opacity: 1.4;
+}
+
+.font-size{
+ width: 100%;
+ height: 100px;
+ position: absolute;
+ left: 0;
+ bottom: 0;
+ color: rgb(255 0 0);
+ padding: 10px;
+ box-sizing: border-box;
+ line-height: 20px;
+}
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*/
+.nav-pills-custom .nav-link {
+  color: #aaa;
+  background: #9a9a9a;;
+  position: relative;
+}
+
+.nav-pills-custom .nav-link.active {
+  color: #45b649;
+  background: #000;
+}
+
+
+/* Add indicator arrow for the active tab */
+@media (min-width: 992px) {
+  .nav-pills-custom .nav-link::before {
+    content: '';
+    display: block;
+    border-top: 8px solid transparent;
+    border-left: 10px solid #fff;
+    border-bottom: 8px solid transparent;
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+}
+
+.nav-pills-custom .nav-link.active::before {
+  opacity: 1;
+}
+
+.text-uppercase{
+  color: #fff;
+  font-size: 17px;
+}
