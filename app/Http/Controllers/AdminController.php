@@ -20,11 +20,9 @@ class AdminController extends Controller
     }else{
   $oem_specs = OEM_Specs::where('model_name', 'LIKE','%'.$search.'%')->get();
     }
-      return view('admin.adminDashboard')->with('oem_specs',$oem_specs);
-   }
-
-  public function addDealer(){
-       return view('admin.addDealer');
+      $response["oem_specs"] = $oem_specs;
+       $response["success"] = 1;
+    return response()->json($response);
    }
 
 
@@ -37,7 +35,9 @@ class AdminController extends Controller
     $dealer->address=$request->address;
     $dealer->phone_no=$request->phone_no;
     $dealer->save();
-    return redirect('api/admin/view-dealer');
+    $response["dealer"] = $dealer;
+       $response["success"] = 1;
+    return response()->json($response);
 }
 
 public function editDealer($id){
@@ -50,20 +50,35 @@ public function editDealer($id){
 
 public function viewDealer(){
  $dealer=Dealer::all();
- return view('admin.ViewDealer')->with('dealer',$dealer);
+  $response["dealer"] = $dealer;
+       $response["success"] = 1;
+ return response()->json($response);
 }
 
 
+public function deleteDealer($id){
+   $id = base64_decode($id);
+    $dealer= Dealer::find($id);
+    $dealer->delete();
+    $response["dealer"] = $dealer;
+       $response["success"] = 1;
+    return response()->json($response);
+} 
+
 public function getModelDetails(){
   $models= OEM_Specs::select('model_name')->get();
-  return view('admin.viewModel')->with('models',$models);
+   $response["models"] = $models;
+       $response["success"] = 1;
+ return response()->json($response);
 }
 
 public function getSearch(Request $request){
   $search = $request->search;
 
   $details = OEM_Specs::where('model_name', 'LIKE','%'.$search.'%')->get();
-  return $details;
+    $response["details"] = $details;
+       $response["success"] = 1;
+ return response()->json($response);
 }
 }
 
